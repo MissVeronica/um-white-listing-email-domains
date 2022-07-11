@@ -1,4 +1,4 @@
-# um white listing email domains
+# UM White Listing Email Domains
 Extension to Ultimate Member for white listing email domains.
 
 This plugin extension will block other e-mail addresses from being able to sign up or sign in to your site.
