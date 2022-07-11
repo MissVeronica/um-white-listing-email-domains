@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! class_exists( 'UM' ) ) return;
 
 
-add_action( 'um_submit_form_errors_hook__blockedemails', 'white_listed_email_domains', 10, 1 );
+add_action( 'um_submit_form_errors_hook__blockedemails', 'white_listed_email_domains', 20, 1 );
 add_filter( 'um_settings_structure', 'um_settings_structure_white_listed_email_domains', 10, 2 );
 
 function white_listed_email_domains( $args ) {
