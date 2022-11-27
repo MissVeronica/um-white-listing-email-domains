@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Ultimate Member - White Listing Email Domains
  * Description:     Extension to Ultimate Member for white listing email domains. Settings at UM Settings -> Access -> Other
- * Version:         1.0.0
+ * Version:         2.0.0
  * Requires PHP:    7.4
  * Author:          Miss Veronica
  * License:         GPL v2 or later
@@ -22,6 +22,12 @@ add_filter( 'um_settings_structure', 'um_settings_structure_white_listed_email_d
 
 function white_listed_email_domains( $args ) {
     
+    $white_list_forms = UM()->options()->get( 'white_listed_email_domains_forms' );
+    if( !empty( $white_list_forms )) {
+        $white_list_forms = explode( ',', str_replace( ' ', '', $white_list_forms ));
+        if( !in_array( $args['form_id'], $white_list_forms )) return;
+    }
+
     $white_list = UM()->options()->get( 'white_listed_email_domains' );
     if( empty( $white_list )) return;
     $valid_email_domains = array_map( 'rtrim', explode( "\n", strtolower( $white_list )));
@@ -48,6 +54,13 @@ function um_settings_structure_white_listed_email_domains( $settings ) {
         'type'    => 'textarea',
         'label'   => __( 'White Listed Email Domains (Enter one email domain per line)', 'ultimate-member' ),
         'tooltip' => __( 'This will block other e-mail addresses from being able to sign up or sign in to your site.', 'ultimate-member' ),
+    );
+
+    $settings['access']['sections']['other']['fields'][] = array(
+        'id'      => 'white_listed_email_domains_forms',
+        'type'    => 'text',
+        'label'   => __( 'White Listed Email Forms (Enter form_id comma separated)', 'ultimate-member' ),
+        'tooltip' => __( 'The UM Form IDs where these White listed e-mail addresses are tested.', 'ultimate-member' ),
     );
 
     return $settings;
