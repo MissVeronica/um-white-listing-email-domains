@@ -13,7 +13,7 @@ Included full email addresses in the white list not only domains.
 ## Settings 
 UM Settings -> Access -> Other
 
-A text box where you enter one email domain per line.
+A text box where you enter one email domain or email address per line.
 
 A text box where the UM Form IDs for test of white listed e-mail addresses are entered comma separated.
 ## Installation
