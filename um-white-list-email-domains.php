@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Ultimate Member - White Listing Email Domains/Addresses
  * Description:     Extension to Ultimate Member for white listing email domains and email addresses. Settings at UM Settings -> Access -> Other
- * Version:         2.1.1
+ * Version:         2.1.2
  * Requires PHP:    7.4
  * Author:          Miss Veronica
  * License:         GPL v2 or later
@@ -22,6 +22,8 @@ add_filter( 'um_settings_structure', 'um_settings_structure_white_listed_email_d
 
 function white_listed_email_domains( $args ) {
     
+    if( !isset( $args['form_id'] )) return;
+
     $white_list_forms = UM()->options()->get( 'white_listed_email_domains_forms' );
     if( !empty( $white_list_forms )) {
         $white_list_forms = explode( ',', str_replace( ' ', '', $white_list_forms ));
