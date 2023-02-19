@@ -2,6 +2,14 @@
 Extension to Ultimate Member for white listing email domains and addresses.
 
 This plugin extension will block other e-mail addresses from being able to sign up or sign in to your site.
+## Translations or Text changes
+Use the “Say What?” plugin with text domain ultimate-member.
+
+1. Original string: This email address has been blocked.
+2. Text domain: ultimate-member
+3. Replacement string: Your new text
+
+https://wordpress.org/plugins/say-what/
 ## Updates
 Version 2.0.0
 
