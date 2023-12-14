@@ -91,7 +91,7 @@ Class UM_White_Listing_Email_Domains {
                     'id'      => 'white_listed_email_domains',
                     'type'    => 'textarea',
                     'label'   => __( 'White_Listing_Email_Domains - One entry per line', 'ultimate-member' ),
-                    'tooltip' => __( 'Enter one per line either domains name and/or user email addresses. This will block other e-mail addresses from being able to sign up to your site.', 'ultimate-member' ),
+                    'tooltip' => __( 'Enter one per line either domain names and/or user email addresses. This will block other e-mail addresses from being able to sign up to your site.', 'ultimate-member' ),
                     'size'    => 'medium',
                 );
 
