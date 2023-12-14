@@ -2,7 +2,7 @@
 Extension to Ultimate Member for white listing email domains and email addresses. 
 
 ## Settings - UM Settings -> Access -> Other
-1. White_Listing_Email_Domains - One entry per line - Enter one per line either domains name and/or user email addresses. This will block other e-mail addresses from being able to sign up to your site.
+1. White_Listing_Email_Domains - One entry per line - Enter one per line either domain names and/or user email addresses. This will block other e-mail addresses from being able to sign up to your site.
 2. White_Listing_Email_Domains - Include these UM Forms in testing - he UM Forms where these White listed e-mail addresses are tested.
 
 ## Translations or Text changes
