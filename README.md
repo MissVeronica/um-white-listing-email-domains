@@ -8,7 +8,7 @@ Extension to Ultimate Member for white listing email domains and email addresses
 ## Updates
 1. Version 2.0.0 Settings added to define the UM Form IDs where these white listed e-mails are tested
 2. Version 2.1.0 Included full email addresses in the white list not only domains.
-3. Version 3.0.0 Improved coding
+3. Version 3.1.0 Improved coding
 
 ## Installation
 Install by downloading the ZIP file and install as a new Plugin, which you upload in WordPress -> Plugins -> Add New -> Upload Plugin. Activate the Plugin: Ultimate Member - White Listing Email Domains
