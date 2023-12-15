@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Ultimate Member - White Listing Email Domains/Addresses
  * Description:     Extension to Ultimate Member for white listing email domains and email addresses. Settings at UM Settings -> Access -> Other
- * Version:         3.0.0
+ * Version:         3.1.0
  * Requires PHP:    7.4
  * Author:          Miss Veronica
  * License:         GPL v2 or later
@@ -39,29 +39,26 @@ Class UM_White_Listing_Email_Domains {
                     $white_list = UM()->options()->get( 'white_listed_email_domains' );
                     if ( ! empty( $white_list )) {
 
-                        $valid_email_domains = array_map( 'rtrim', explode( "\n", strtolower( $white_list )));
+                        $valid_email_domains = array_map( 'strtolower', array_map( 'trim', explode( "\n", $white_list )));
 
-                        if ( isset( $args['user_email'] ) && is_email( $args['user_email'] )) {
-
-                            $email_domain = explode( '@', $args['user_email'] );
-
-                            if ( ! in_array( strtolower( $email_domain[1] ), $valid_email_domains ) &&
-                                ! in_array( strtolower( $args['user_email'] ), $valid_email_domains )) {
-                                exit( wp_redirect( esc_url( add_query_arg( 'err', 'blocked_email' ))));
-                            }
-                        }
-
-                        if ( isset( $args['username'] ) && is_email( $args['username'] )) {
-
-                            $email_domain = explode( '@', $args['username'] );
-
-                            if ( ! in_array( strtolower( $email_domain[1] ), $valid_email_domains ) &&
-                                ! in_array( strtolower( $args['username'] ), $valid_email_domains )) {
-                                exit( wp_redirect( esc_url( add_query_arg( 'err', 'blocked_email' ))));
-                            }
-                        }
+                        $this->validate_white_listed_emails( $args['user_email'], $valid_email_domains );
+                        $this->validate_white_listed_emails( $args['username'],   $valid_email_domains );
                     }
                 }
+            }
+        }
+    }
+
+    public function validate_white_listed_emails( $user_email, $valid_email_domains ) {
+
+        if ( isset( $user_email ) && is_email( $user_email )) {
+
+            $email_domain = array_map( 'strtolower', explode( '@', $user_email ));
+
+            if ( ! in_array( $email_domain[1], $valid_email_domains ) &&
+                 ! in_array( strtolower( $user_email ), $valid_email_domains )) {
+
+                exit( wp_redirect( esc_url( add_query_arg( 'err', 'blocked_email' ))));
             }
         }
     }
@@ -110,6 +107,3 @@ Class UM_White_Listing_Email_Domains {
 }
 
 new UM_White_Listing_Email_Domains();
-
-    return $settings;
-}
