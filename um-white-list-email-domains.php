@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Ultimate Member - White Listing Email Domains/Addresses
  * Description:     Extension to Ultimate Member for white listing email domains and email addresses. Settings at UM Settings -> Access -> Other
- * Version:         3.1.0
+ * Version:         3.2.0
  * Requires PHP:    7.4
  * Author:          Miss Veronica
  * License:         GPL v2 or later
@@ -10,7 +10,7 @@
  * Author URI:      https://github.com/MissVeronica
  * Text Domain:     ultimate-member
  * Domain Path:     /languages
- * UM version:      2.4.1
+ * UM version:      2.8.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; 
@@ -41,8 +41,13 @@ Class UM_White_Listing_Email_Domains {
 
                         $valid_email_domains = array_map( 'strtolower', array_map( 'trim', explode( "\n", $white_list )));
 
-                        $this->validate_white_listed_emails( $args['user_email'], $valid_email_domains );
-                        $this->validate_white_listed_emails( $args['username'],   $valid_email_domains );
+                        if ( isset( $args['user_email'] )) {
+                            $this->validate_white_listed_emails( $args['user_email'], $valid_email_domains );
+                        }
+
+                        if ( isset( $args['username'] )) {
+                            $this->validate_white_listed_emails( $args['username'],   $valid_email_domains );
+                        }
                     }
                 }
             }
@@ -51,7 +56,7 @@ Class UM_White_Listing_Email_Domains {
 
     public function validate_white_listed_emails( $user_email, $valid_email_domains ) {
 
-        if ( isset( $user_email ) && is_email( $user_email )) {
+        if ( is_email( $user_email )) {
 
             $email_domain = array_map( 'strtolower', explode( '@', $user_email ));
 
