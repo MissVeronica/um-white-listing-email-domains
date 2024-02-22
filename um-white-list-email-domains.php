@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Ultimate Member - White Listing Email Domains/Addresses
  * Description:     Extension to Ultimate Member for white listing email domains and email addresses. Settings at UM Settings -> Access -> Other
- * Version:         3.2.0
+ * Version:         3.3.0
  * Requires PHP:    7.4
  * Author:          Miss Veronica
  * License:         GPL v2 or later
@@ -10,7 +10,7 @@
  * Author URI:      https://github.com/MissVeronica
  * Text Domain:     ultimate-member
  * Domain Path:     /languages
- * UM version:      2.8.0
+ * UM version:      2.8.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; 
@@ -87,28 +87,32 @@ Class UM_White_Listing_Email_Domains {
         return $um_form_ids;
     }
 
-    public function um_settings_structure_white_listed_email_domains( $settings ) {
+    public function um_settings_structure_white_listed_email_domains( $settings_structure ) {
 
-        $settings['access']['sections']['other']['fields'][] = array(
-                    'id'      => 'white_listed_email_domains',
-                    'type'    => 'textarea',
-                    'label'   => __( 'White_Listing_Email_Domains - One entry per line', 'ultimate-member' ),
-                    'tooltip' => __( 'Enter one per line either domain names and/or user email addresses. This will block other e-mail addresses from being able to sign up to your site.', 'ultimate-member' ),
-                    'size'    => 'medium',
+        $settings_structure['access']['sections']['other']['form_sections']['white_listed_email_domains']['title'] = __( 'White_Listing_Email_Domains', 'ultimate-member' );
+        $settings_structure['access']['sections']['other']['form_sections']['white_listed_email_domains']['description'] = __( 'Plugin version 3.3.0 - tested with UM 2.8.3', 'ultimate-member' );
+
+        $settings_structure['access']['sections']['other']['form_sections']['white_listed_email_domains']['fields'][] = array(
+                    'id'          => 'white_listed_email_domains',
+                    'type'        => 'textarea',
+                    'label'       => __( 'One entry per line', 'ultimate-member' ),
+                    'description' => __( 'Enter one per line either domain names and/or user email addresses. This will block other e-mail addresses from being able to sign up to your site.', 'ultimate-member' ),
+                    'size'        => 'medium',
                 );
 
-        $settings['access']['sections']['other']['fields'][] = array(
-                    'id'      => 'white_listed_email_domains_forms',
-                    'type'    => 'select',
-                    'multi'   => true,
-                    'label'   => __( 'White_Listing_Email_Domains - Include these UM Forms in testing', 'ultimate-member' ),
-                    'options' => $this->get_form_ids_register(),
-                    'tooltip' => __( 'The UM Forms where these White listed e-mail addresses are tested.', 'ultimate-member' ),
+        $settings_structure['access']['sections']['other']['form_sections']['white_listed_email_domains']['fields'][] = array(
+                    'id'          => 'white_listed_email_domains_forms',
+                    'type'        => 'select',
+                    'multi'       => true,
+                    'label'       => __( 'Include these UM Forms in testing', 'ultimate-member' ),
+                    'options'     => $this->get_form_ids_register(),
+                    'description' => __( 'The UM Forms where these White listed e-mail addresses are tested.', 'ultimate-member' ),
                 );
 
-        return $settings;
+        return $settings_structure;
     }
 
 }
 
 new UM_White_Listing_Email_Domains();
+
